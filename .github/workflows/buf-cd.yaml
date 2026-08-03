@@ -6,6 +6,13 @@ on:
             - main
             - develop
     
+        paths: 
+         - 'proto/**'
+         - '**.proto'
+         - '**/buf.yaml'
+         - '**/buf.lock'
+         - '**/buf.md'  
+    
 jobs:
     buf-push:
         name: Push pytorch schema to buf
