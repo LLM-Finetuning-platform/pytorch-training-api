@@ -1,0 +1,13 @@
+name: Pytorch Training API Deployment
+
+on: 
+    push: 
+        branches: 
+            - main
+            - develop
+    
+jobs:
+    buf-push:
+        name: Push pytorch schema to buf
+        uses:  LLM-Finetuning-platform/shared-workflows/.github/workflows/buf-cd.yaml@main
+        secrets: inherit 

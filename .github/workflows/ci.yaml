@@ -1,0 +1,14 @@
+name: Pytorch Training API (PTA) CI
+
+on: 
+    pull_request: 
+        branches: 
+            - develop
+            - main
+
+jobs:
+    buf-ci:
+        name: BUF Checks for PTA proto files
+        uses:  LLM-Finetuning-platform/shared-workflows/.github/workflows/buf-ci.yaml@main
+        
+        

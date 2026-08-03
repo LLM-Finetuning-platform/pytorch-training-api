@@ -1,0 +1,16 @@
+name: Pytorch Training API release workflow
+
+on: 
+    push: 
+        branches: [main]
+    
+permissions: 
+    contents: write
+    pull-requests: write
+    issues: write
+
+jobs:
+    pytorch-training-api-release:
+        name: Pytorch Training api release workflow
+        uses: LLM-Finetuning-platform/shared-workflows/.github/workflows/release.yml@main
+        secrets: inherit 
