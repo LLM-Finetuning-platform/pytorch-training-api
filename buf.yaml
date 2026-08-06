@@ -1,0 +1,12 @@
+version: v1
+
+name: buf.build/llmfp/pytorch-training-api
+
+deps: []
+lint:
+  use:
+    - STANDARD
+breaking:
+  use:
+    - FILE
+
