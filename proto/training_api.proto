@@ -1,0 +1,23 @@
+syntax = "proto3";
+package training.v1;
+
+service TrainingAPIService {
+    rpc Train(TrainRequest) returns (TrainResponse){}
+    rpc Status(StatusRequest) returns (StatusResponse){}
+}
+
+message TrainRequest {
+
+}
+
+message TrainResponse {
+
+}
+
+message StatusRequest {
+
+}
+
+message StatusResponse {
+    
+}
