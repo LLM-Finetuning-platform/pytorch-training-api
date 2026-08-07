@@ -1,8 +1,8 @@
-version: v1
-
+version: v2
 plugins:
-  - plugin: python
-    out: src/handlers/grpc
+- remote: buf.build/bufbuild/grpc-py:v0.2.1
+  out: src/handlers/grpc
+# bufbuild/grpc-py depends on bufbuild/py
+- remote: buf.build/bufbuild/py:v0.2.0
+  out: src/handlers/grpc
   
-  - plugin: grpc-python
-    out: src/handlers/grpc
