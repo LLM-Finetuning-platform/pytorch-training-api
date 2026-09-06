@@ -8,23 +8,18 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from grpc import StatusCode, method_handlers_generic_handler, unary_stream_rpc_method_handler, unary_unary_rpc_method_handler
+from grpc import StatusCode, method_handlers_generic_handler, unary_unary_rpc_method_handler
 
-from .training_api_pb import StatusRequest, StatusResponse, TrainRequest, TrainResponse
+from .training_api_pb import TrainRequest, TrainResponse
 
 if TYPE_CHECKING:
-    from collections.abc import AsyncIterator, Iterator, Sequence
+    from collections.abc import Sequence
 
-    from grpc import CallCredentials, Channel, Compression, Server, ServicerContext, _CallIterator, aio
+    from grpc import CallCredentials, Channel, Compression, Server, ServicerContext, aio
 
 
 class TrainingAPIServiceService:
     async def train(self, request: TrainRequest, context: aio.ServicerContext) -> TrainResponse:
-        context.set_code(StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
-
-    def status(self, request: StatusRequest, context: aio.ServicerContext) -> AsyncIterator[StatusResponse]:
         context.set_code(StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
@@ -36,11 +31,6 @@ class TrainingAPIServiceService:
                 self.train,
                 request_deserializer=TrainRequest.from_binary,
                 response_serializer=TrainResponse.to_binary,
-            ),
-            "Status": unary_stream_rpc_method_handler(
-                self.status,
-                request_deserializer=StatusRequest.from_binary,
-                response_serializer=StatusResponse.to_binary,
             ),
         }
         generic_handler = method_handlers_generic_handler(
@@ -57,11 +47,6 @@ class TrainingAPIServiceClient:
             request_serializer=TrainRequest.to_binary,
             response_deserializer=TrainResponse.from_binary,
         )
-        self._status = channel.unary_stream(
-            "/proto.v1.TrainingAPIService/Status",
-            request_serializer=StatusRequest.to_binary,
-            response_deserializer=StatusResponse.from_binary,
-        )
 
     def train(
         self,
@@ -75,26 +60,9 @@ class TrainingAPIServiceClient:
     ) -> aio.UnaryUnaryCall[TrainRequest, TrainResponse]:
         return self._train(request, timeout=timeout, metadata=metadata, credentials=credentials, wait_for_ready=wait_for_ready, compression=compression)
 
-    def status(
-        self,
-        request: StatusRequest,
-        *,
-        timeout: float | None = None,
-        metadata: aio.Metadata | Sequence[tuple[str, str | bytes]] | None = None,
-        credentials: CallCredentials | None = None,
-        wait_for_ready: bool | None = None,
-        compression: Compression | None = None,
-    ) -> aio.UnaryStreamCall[StatusRequest, StatusResponse]:
-        return self._status(request, timeout=timeout, metadata=metadata, credentials=credentials, wait_for_ready=wait_for_ready, compression=compression)
-
 
 class TrainingAPIServiceServiceSync:
     def train(self, request: TrainRequest, context: ServicerContext) -> TrainResponse:
-        context.set_code(StatusCode.UNIMPLEMENTED)
-        context.set_details("Method not implemented!")
-        raise NotImplementedError("Method not implemented!")
-
-    def status(self, request: StatusRequest, context: ServicerContext) -> Iterator[StatusResponse]:
         context.set_code(StatusCode.UNIMPLEMENTED)
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
@@ -106,11 +74,6 @@ class TrainingAPIServiceServiceSync:
                 self.train,
                 request_deserializer=TrainRequest.from_binary,
                 response_serializer=TrainResponse.to_binary,
-            ),
-            "Status": unary_stream_rpc_method_handler(
-                self.status,
-                request_deserializer=StatusRequest.from_binary,
-                response_serializer=StatusResponse.to_binary,
             ),
         }
         generic_handler = method_handlers_generic_handler(
@@ -127,11 +90,6 @@ class TrainingAPIServiceClientSync:
             request_serializer=TrainRequest.to_binary,
             response_deserializer=TrainResponse.from_binary,
         )
-        self._status = channel.unary_stream(
-            "/proto.v1.TrainingAPIService/Status",
-            request_serializer=StatusRequest.to_binary,
-            response_deserializer=StatusResponse.from_binary,
-        )
 
     def train(
         self,
@@ -144,15 +102,3 @@ class TrainingAPIServiceClientSync:
         compression: Compression | None = None,
     ) -> TrainResponse:
         return self._train(request, timeout=timeout, metadata=metadata, credentials=credentials, wait_for_ready=wait_for_ready, compression=compression)
-
-    def status(
-        self,
-        request: StatusRequest,
-        *,
-        timeout: float | None = None,
-        metadata: tuple[tuple[str, str | bytes], ...] | None = None,
-        credentials: CallCredentials | None = None,
-        wait_for_ready: bool | None = None,
-        compression: Compression | None = None,
-    ) -> _CallIterator[StatusResponse]:
-        return self._status(request, timeout=timeout, metadata=metadata, credentials=credentials, wait_for_ready=wait_for_ready, compression=compression)

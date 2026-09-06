@@ -77,71 +77,13 @@ class TrainResponse(Message[_TrainResponseFields]):
 
         job_id: str
 
-_StatusRequestFields: TypeAlias = Literal["job_id"]
-
-class StatusRequest(Message[_StatusRequestFields]):
-    """
-    ```proto
-    message proto.v1.StatusRequest
-    ```
-
-    Attributes:
-        job_id:
-            ```proto
-            string job_id = 1;
-            ```
-    """
-
-    __slots__ = ("job_id",)
-
-    if TYPE_CHECKING:
-
-        def __init__(
-            self,
-            *,
-            job_id: str = "",
-        ) -> None:
-            pass
-
-        job_id: str
-
-_StatusResponseFields: TypeAlias = Literal["epoch"]
-
-class StatusResponse(Message[_StatusResponseFields]):
-    """
-    ```proto
-    message proto.v1.StatusResponse
-    ```
-
-    Attributes:
-        epoch:
-            ```proto
-            int32 epoch = 1;
-            ```
-    """
-
-    __slots__ = ("epoch",)
-
-    if TYPE_CHECKING:
-
-        def __init__(
-            self,
-            *,
-            epoch: int = 0,
-        ) -> None:
-            pass
-
-        epoch: int
-
 
 _DESC = file_desc(
-    b'\n\x1bproto/v1/training_api.proto\x12\x08proto.v1"B\n\x0cTrainRequest\x12\x19\n\x08model_id\x18\x01 \x01(\tR\x07modelId\x12\x17\n\x07peft_id\x18\x02 \x01(\tR\x06peftId"&\n\rTrainResponse\x12\x15\n\x06job_id\x18\x01 \x01(\tR\x05jobId"&\n\rStatusRequest\x12\x15\n\x06job_id\x18\x01 \x01(\tR\x05jobId"&\n\x0eStatusResponse\x12\x14\n\x05epoch\x18\x01 \x01(\x05R\x05epoch2\x91\x01\n\x12TrainingAPIService\x12:\n\x05Train\x12\x16.proto.v1.TrainRequest\x1a\x17.proto.v1.TrainResponse"\x00\x12?\n\x06Status\x12\x17.proto.v1.StatusRequest\x1a\x18.proto.v1.StatusResponse"\x000\x01b\x06proto3',
+    b'\n\x1bproto/v1/training_api.proto\x12\x08proto.v1"B\n\x0cTrainRequest\x12\x19\n\x08model_id\x18\x01 \x01(\tR\x07modelId\x12\x17\n\x07peft_id\x18\x02 \x01(\tR\x06peftId"&\n\rTrainResponse\x12\x15\n\x06job_id\x18\x01 \x01(\tR\x05jobId2P\n\x12TrainingAPIService\x12:\n\x05Train\x12\x16.proto.v1.TrainRequest\x1a\x17.proto.v1.TrainResponse"\x00b\x06proto3',
     [],
     {
         "TrainRequest": TrainRequest,
         "TrainResponse": TrainResponse,
-        "StatusRequest": StatusRequest,
-        "StatusResponse": StatusResponse,
     },
 )
 

@@ -9,8 +9,9 @@ V1_router = Router()
 
 @V1_router.register(name="Train")
 async def train( model_id: str, peft_id: str ):
-    pass
+    pass 
 
 @V1_router.register(name="Status")
-async def status(job_id:str):
+def status(job_id:str):
     pass
+    

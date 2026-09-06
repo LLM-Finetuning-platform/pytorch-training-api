@@ -8,7 +8,5 @@ import src.handlers.grpc.proto.v1.training_api_pb as training_api_pb
 
 class TrainingAPIService(training_api_pb_grpc.TrainingAPIServiceService):
     async def train(self, request: training_api_pb_grpc.TrainRequest, context: ServicerContext) -> training_api_pb_grpc.TrainResponse:
+        # await  V1_router.execute("Train",request)
         return await super().train(request, context)
-
-    def status(self, request: training_api_pb_grpc.StatusRequest, context: ServicerContext) -> AsyncIterator[training_api_pb_grpc.StatusResponse]:
-        return super().status(request, context)

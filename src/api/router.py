@@ -13,12 +13,10 @@ class BaseRouter(ABC):
             self._handlers[key] = func
             return func
         return decorator
-    async    def execute(self, name: str, *args, **kwargs)->Any:
+    def execute(self, name: str, *args, **kwargs)->Any:
             handler = self._handlers.get(name)
             if not handler:
                  raise ValueError(f"No Handler registered for the name {name} ")
-            if inspect.iscoroutinefunction(handler):
-                 return await handler(*args, **kwargs)
             return handler (*args, **kwargs)
     def list_handlers(self)->Dict[str, Callable]:
          return self._handlers

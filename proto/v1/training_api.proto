@@ -3,7 +3,6 @@ package  proto.v1;
 
 service TrainingAPIService {
     rpc Train(TrainRequest) returns (TrainResponse){}
-    rpc Status(StatusRequest) returns (stream StatusResponse){}
 }
 
 message TrainRequest {
@@ -16,10 +15,4 @@ message TrainResponse {
     string job_id =1;
 }
 
-message StatusRequest {
-    string job_id =1;
-}
 
-message StatusResponse {
-    int32 epoch =1;
-}
